@@ -154,7 +154,7 @@ hello.bf
 
 containing the translated Brainfuck code.
 
-## Example: Hello World
+## "Hello, World!" in Headache
 
 ```headache
 add 72

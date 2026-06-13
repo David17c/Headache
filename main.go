@@ -12,6 +12,12 @@ func main() {
 
 	if len(args) < 2 {
 		Help()
+		return
+	}
+
+	if strings.ToLower(args[1]) == "help" {
+		Help()
+		return
 	}
 
 	ParseArgs(args)
@@ -24,7 +30,7 @@ func ParseArgs(args []string) {
 	// If the user wants to directly run a headache or brainfuck file
 	if args[1] == "run" {
 		if len(args) < 3 || len(args) > 3 {
-			fmt.Printf("Usage: %s run <file>\n", args[0])
+			Help()
 			return
 		}
 		inputPath = args[2]
@@ -59,5 +65,10 @@ func ParseArgs(args []string) {
 }
 
 func Help() {
-	// ToDo will fix later
+	fmt.Printf(
+		"Usage:\n" +
+			"headache run <brainfuck or headache file> (runs code directly)\n" +
+			"headache <example.ha> (compile and print bf to terminal)\n" +
+			"headache <example.ha> <output.bf> (write compiled brainfuck to output.bf)\n",
+	)
 }
