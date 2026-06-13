@@ -1,7 +1,11 @@
-# Language Commands
+# Headache
+
+Headache is a simple programming language that makes Brainfuck easier to read and write. It replaces Brainfuck's symbols with words like `add`, `forward`, and `print`, while still compiling directly into standard Brainfuck code.
+
+## Language Commands
 
 | Command     | Brainfuck | Description                 |
-| ----------- | --------- | --------------------------- |
+| -------------| -----------| -----------------------------|
 | `forward`   | `>`       | Move pointer right 1 cell   |
 | `forward N` | `>` × N   | Move pointer right N cells  |
 | `back`      | `<`       | Move pointer left 1 cell    |
@@ -72,41 +76,30 @@ Compiles to:
 
 ---
 
-# Complete Syntax Example
-
-This example uses every language feature:
+## Complete Syntax Example
 
 ```headache
 add 5
-
 loop
     remove
-
     forward
     add
-
     back
 end
 
 forward
-
 print
-
 input
-
 remove 10
-
 print 2
-
 back 1
 forward 3
 ```
 
----
 
-# CLI Usage
+## CLI Usage
 
-## Run a Headache program
+### Run a Headache program
 
 ```bash
 headache run program.ha
@@ -114,7 +107,7 @@ headache run program.ha
 
 Translates the file to Brainfuck and executes it.
 
-## Run a Brainfuck program
+### Run a Brainfuck program
 
 ```bash
 headache run program.bf
@@ -122,7 +115,7 @@ headache run program.bf
 
 Executes a Brainfuck file directly.
 
-## Compile to Brainfuck and print to terminal
+### Compile to Brainfuck and print to terminal
 
 ```bash
 headache program.ha
@@ -141,7 +134,7 @@ Output:
 +++.
 ```
 
-## Compile to a Brainfuck file
+### Compile to a Brainfuck file
 
 ```bash
 headache program.ha output.bf
@@ -161,9 +154,7 @@ hello.bf
 
 containing the translated Brainfuck code.
 
----
-
-# Example: Hello World
+## Example: Hello World
 
 ```headache
 add 72
