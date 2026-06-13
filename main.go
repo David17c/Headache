@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"headache/internal"
 	"os"
+	"path/filepath"
 	"strings"
 )
 
@@ -11,63 +12,85 @@ func main() {
 	args := os.Args
 
 	if len(args) < 2 {
-		Help()
+		help()
 		return
 	}
 
-	if strings.ToLower(args[1]) == "help" {
-		Help()
+	if strings.EqualFold(args[1], "help") {
+		help()
 		return
 	}
 
-	ParseArgs(args)
+	parseArgs(args)
 }
 
-func ParseArgs(args []string) {
-	var outputPath string
-	var inputPath string
-
-	// If the user wants to directly run a headache or brainfuck file
+func parseArgs(args []string) {
 	if args[1] == "run" {
-		if len(args) < 3 || len(args) > 3 {
-			Help()
-			return
-		}
-		inputPath = args[2]
-		if strings.HasSuffix(strings.ToLower(inputPath), ".bf") {
-			bf_output, err := os.ReadFile(inputPath)
-			if err != nil {
-				fmt.Fprintln(os.Stderr, err)
-				return
-			}
-			internal.Interpreter(string(bf_output))
-			return
-		}
-		bf_output := internal.Translator(inputPath)
-		internal.Interpreter(bf_output)
-		// If the user wants to compile the headache file to a brainfuck file
-	} else {
-		inputPath = args[1]
-		if len(args) > 2 {
-			outputPath = args[2]
-		}
-		bf_output := internal.Translator(inputPath)
-		if outputPath == "" {
-			fmt.Println(bf_output)
-			return
-		}
+		runFile(args)
+		return
+	}
 
-		err := os.WriteFile(outputPath, []byte(bf_output), 0666)
+	compileFile(args)
+}
+
+func runFile(args []string) {
+	if len(args) != 3 {
+		help()
+		return
+	}
+
+	inputPath := args[2]
+	ext := strings.ToLower(filepath.Ext(inputPath))
+
+	switch ext {
+	case ".bf":
+		bfSource, err := os.ReadFile(inputPath)
 		if err != nil {
 			fmt.Fprintln(os.Stderr, err)
+			return
 		}
+
+		internal.Interpreter(string(bfSource))
+
+	case ".ha":
+		bfOutput := internal.Translator(inputPath)
+		internal.Interpreter(bfOutput)
+
+	default:
+		help()
 	}
 }
 
-func Help() {
-	fmt.Printf(
+func compileFile(args []string) {
+	inputPath := args[1]
+
+	if !strings.EqualFold(filepath.Ext(inputPath), ".ha") {
+		help()
+		return
+	}
+
+	var outputPath string
+	if len(args) > 2 {
+		outputPath = args[2]
+	}
+
+	bfOutput := internal.Translator(inputPath)
+
+	if outputPath == "" {
+		fmt.Println(bfOutput)
+		return
+	}
+
+	err := os.WriteFile(outputPath, []byte(bfOutput), 0644)
+	if err != nil {
+		fmt.Fprintln(os.Stderr, err)
+	}
+}
+
+func help() {
+	fmt.Print(
 		"Usage:\n" +
-			"headache run <example.ha> (Run headache)\n" +
+			"headache run <example.ha> (Run Headache)\n" +
 			"headache run <example.bf> (Run Brainfuck)\n" +
 			"headache <example.ha> (Compile to Brainfuck and print to terminal)\n" +
 			"headache <example.ha> <output.bf> (Compile to a Brainfuck file)\n",
