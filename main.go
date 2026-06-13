@@ -67,8 +67,9 @@ func ParseArgs(args []string) {
 func Help() {
 	fmt.Printf(
 		"Usage:\n" +
-			"headache run <brainfuck or headache file> (runs code directly)\n" +
-			"headache <example.ha> (compile and print bf to terminal)\n" +
-			"headache <example.ha> <output.bf> (write compiled brainfuck to output.bf)\n",
+			"headache run <example.ha> (Run headache)\n" +
+			"headache run <example.bf> (Run Brainfuck)\n" +
+			"headache <example.ha> (Compile to Brainfuck and print to terminal)\n" +
+			"headache <example.ha> <output.bf> (Compile to a Brainfuck file)\n",
 	)
 }
