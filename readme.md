@@ -1,6 +1,6 @@
 # Headache
 
-Headache is a simple programming language that makes Brainfuck easier to read and write. It replaces Brainfuck's symbols with words like `add`, `forward`, and `print`, while still compiling directly into standard Brainfuck code.
+A simple programming language that makes Brainfuck easier to read and write. It replaces Brainfuck's symbols with words like `increment`, `forward`, and `print`, while still compiling directly into standard Brainfuck code.
 
 ## Language Commands
 
@@ -10,10 +10,10 @@ Headache is a simple programming language that makes Brainfuck easier to read an
 | `forward N` | `>` × N   | Move pointer right N cells  |
 | `back`      | `<`       | Move pointer left 1 cell    |
 | `back N`    | `<` × N   | Move pointer left N cells   |
-| `add`       | `+`       | Increment current cell by 1 |
-| `add N`     | `+` × N   | Increment current cell by N |
-| `remove`    | `-`       | Decrement current cell by 1 |
-| `remove N`  | `-` × N   | Decrement current cell by N |
+| `increment`       | `+`       | Increment current cell by 1 |
+| `increment N`     | `+` × N   | Increment current cell by N |
+| `decrement`    | `-`       | Decrement current cell by 1 |
+| `decrement N`  | `-` × N   | Decrement current cell by N |
 | `input`     | `,`       | Read one byte               |
 | `input N`   | `,` × N   | Read N bytes                |
 | `print`     | `.`       | Output current cell         |
@@ -26,7 +26,7 @@ Headache is a simple programming language that makes Brainfuck easier to read an
 ```headache
 // Full line comment
 
-add 65 // Inline comment
+increment 65 // Inline comment
 print
 ```
 
@@ -37,22 +37,22 @@ Everything after `//` is ignored.
 The translator converts everything to lowercase before parsing:
 
 ```headache
-ADD 65
+increment 65
 Print
 
 FoRwArD 2
-aDd 10
+increment 10
 PRINT
 ```
 
 is equivalent to:
 
 ```headache
-add 65
+increment 65
 print
 
 forward 2
-add 10
+increment 10
 print
 ```
 
@@ -61,9 +61,9 @@ print
 Most commands accept an optional number:
 
 ```headache
-add 10
+increment 10
 forward 5
-remove 3
+decrement 3
 print 2
 input 4
 ```
@@ -79,18 +79,18 @@ Compiles to:
 ## Complete Syntax Example
 
 ```headache
-add 5
+increment 5
 loop
-    remove
+    decrement
     forward
-    add
+    increment
     back
 end
 
 forward
 print
 input
-remove 10
+decrement 10
 print 2
 back 1
 forward 3
@@ -124,7 +124,7 @@ headache program.ha
 Example:
 
 ```headache
-add 3
+increment 3
 print
 ```
 
@@ -157,58 +157,58 @@ containing the translated Brainfuck code.
 ## "Hello, World!" in Headache
 
 ```headache
-add 72
+increment 72
 print
 
 forward
-add 101
+increment 101
 print
 
 forward
-add 108
+increment 108
 print
 
 forward
-add 108
+increment 108
 print
 
 forward
-add 111
+increment 111
 print
 
 forward
-add 44
+increment 44
 print
 
 forward
-add 32
+increment 32
 print
 
 forward
-add 87
+increment 87
 print
 
 forward
-add 111
+increment 111
 print
 
 forward
-add 114
+increment 114
 print
 
 forward
-add 108
+increment 108
 print
 
 forward
-add 100
+increment 100
 print
 
 forward
-add 33
+increment 33
 print
 
 forward
-add 10
+increment 10
 print
 ```

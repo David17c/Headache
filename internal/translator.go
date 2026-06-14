@@ -59,7 +59,7 @@ func Translator(input_path string) string {
 			}
 			output += s
 
-		case "add":
+		case "increment":
 			s, err := repeatCommand(fields, "+")
 			if err != nil {
 				fmt.Println(err)
@@ -67,7 +67,7 @@ func Translator(input_path string) string {
 			}
 			output += s
 
-		case "remove":
+		case "decrement":
 			s, err := repeatCommand(fields, "-")
 			if err != nil {
 				fmt.Println(err)
