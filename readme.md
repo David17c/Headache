@@ -4,22 +4,22 @@ A simple programming language that makes Brainfuck easier to read and write. It 
 
 ## Language Commands
 
-| Command     | Brainfuck | Description                 |
-| -------------| -----------| -----------------------------|
-| `forward`   | `>`       | Move pointer right 1 cell   |
-| `forward N` | `>` × N   | Move pointer right N cells  |
-| `back`      | `<`       | Move pointer left 1 cell    |
-| `back N`    | `<` × N   | Move pointer left N cells   |
-| `increment`       | `+`       | Increment current cell by 1 |
-| `increment N`     | `+` × N   | Increment current cell by N |
-| `decrement`    | `-`       | Decrement current cell by 1 |
-| `decrement N`  | `-` × N   | Decrement current cell by N |
-| `input`     | `,`       | Read one byte               |
-| `input N`   | `,` × N   | Read N bytes                |
-| `print`     | `.`       | Output current cell         |
-| `print N`   | `.` × N   | Output current cell N times |
-| `loop`      | `[`       | Begin loop                  |
-| `end`       | `]`       | End loop                    |
+| Command       | Brainfuck | Description                 |
+| ---------------| -----------| -----------------------------|
+| `forward`     | `>`       | Move pointer right 1 cell   |
+| `forward N`   | `>` × N   | Move pointer right N cells  |
+| `back`        | `<`       | Move pointer left 1 cell    |
+| `back N`      | `<` × N   | Move pointer left N cells   |
+| `increment`   | `+`       | Increment current cell by 1 |
+| `increment N` | `+` × N   | Increment current cell by N |
+| `decrement`   | `-`       | Decrement current cell by 1 |
+| `decrement N` | `-` × N   | Decrement current cell by N |
+| `input`       | `,`       | Read one byte               |
+| `input N`     | `,` × N   | Read N bytes                |
+| `print`       | `.`       | Output current cell         |
+| `print N`     | `.` × N   | Output current cell N times |
+| `loop`        | `[`       | Begin loop                  |
+| `end`         | `]`       | End loop                    |
 
 ## Comments
 
